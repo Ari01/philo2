@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:33:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/14 10:16:08 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/16 08:54:14 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	check_death(t_philo *philo, t_info *info)
 		if (get_timediff(philo[i].time_last_meal) >= (unsigned long)info->time_to_die)
 		{
 			info->end_sim = 1;
-			print_status(philo, info, "died");
 			pthread_mutex_unlock(&info->eat_mutex);
+			print_status(philo, info, "died");
 			return (1);
 		}
 		i++;
