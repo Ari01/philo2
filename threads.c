@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 07:00:52 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/16 14:27:21 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/16 14:44:27 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	*run_sim(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->id % 2)
+		usleep(100000);
 	while (1)
 	{
+		eat(philo);
 		pthread_mutex_lock(&philo->info->eat_mutex);
 		if (philo->info->end_sim)
 		{
@@ -26,7 +29,6 @@ void	*run_sim(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->info->eat_mutex);
-		eat(philo);
 	}
 	return (NULL);
 }

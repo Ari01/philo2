@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:33:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/16 08:54:14 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/16 14:47:55 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_death(t_philo *philo, t_info *info)
 		}
 		i++;
 		pthread_mutex_unlock(&info->eat_mutex);
-		usleep(100);
+		usleep(1000);
 	}
 	return (0);
 }
@@ -50,7 +50,7 @@ int	check_eat(t_philo *philo, t_info *info)
 			count++;
 		i++;
 		pthread_mutex_unlock(&info->eat_mutex);
-		usleep(100);
+		usleep(1000);
 	}
 	if (count >= info->n_philo)
 	{
@@ -64,6 +64,7 @@ int	check_eat(t_philo *philo, t_info *info)
 
 void	check_end_sim(t_philo *philo, t_info *info)
 {
+	usleep(100000);
 	while (1)
 	{
 		if (check_death(philo, info))
