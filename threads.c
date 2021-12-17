@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 07:00:52 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/16 14:44:27 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:17:57 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	*run_sim(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (philo->id % 2)
-		usleep(100000);
+	if (!(philo->id % 2))
+		usleep(10000);
 	while (1)
 	{
 		eat(philo);

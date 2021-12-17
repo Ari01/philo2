@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:36:04 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/16 15:04:02 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:23:44 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ void	eat(t_philo *philo)
 	take_forks(philo);
 	pthread_mutex_lock(&philo->info->eat_mutex);
 	philo->time_last_meal = get_time();
+	philo->n_eat++;
+	if (!philo->info->end_sim)
+		print_status(philo, philo->info, "is eating");
 	pthread_mutex_unlock(&philo->info->eat_mutex);
-	print_status(philo, philo->info, "is eating");
 	if (ft_sleep(philo->info, philo->info->time_to_eat))
 		print_status(philo, philo->info, "is sleeping");
 	drop_forks(philo);

@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:33:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/16 15:08:27 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:20:11 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ int	check_death(t_philo *philo, t_info *info)
 		pthread_mutex_lock(&info->eat_mutex);
 		if (get_timediff(philo[i].time_last_meal) >= (unsigned long)info->time_to_die)
 		{
-			printf("timediff = %lu\n", get_timediff(philo[i].time_last_meal));
 			info->end_sim = 1;
 			pthread_mutex_unlock(&info->eat_mutex);
-			print_status(philo, info, "died");
+			print_status(&philo[i], info, "died");
 			return (1);
 		}
 		i++;
@@ -47,7 +46,7 @@ int	check_eat(t_philo *philo, t_info *info)
 	while (i < info->n_philo)
 	{
 		pthread_mutex_lock(&info->eat_mutex);
-		if (philo[i].n_eat > info->n_eat)
+		if (philo[i].n_eat >= info->n_eat)
 			count++;
 		i++;
 		pthread_mutex_unlock(&info->eat_mutex);
