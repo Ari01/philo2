@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 04:51:39 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/16 09:02:56 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/18 14:29:16 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ void			run_threads(t_info *info, t_philo *philo);
 void			check_end_sim(t_philo *philo, t_info *info);
 
 /*	EAT	*/
-void			eat(t_philo *philo);
+int				eat(t_philo *philo);
 
 #endif
