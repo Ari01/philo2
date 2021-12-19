@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 06:24:31 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/18 15:45:28 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:16:38 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,14 @@ unsigned long	get_timediff(unsigned long start)
 
 void	print_status(t_philo *philo, t_info *info, char *msg)
 {
-	pthread_mutex_lock(&info->eat_mutex);
+	pthread_mutex_lock(&info->death_mutex);
 	if (!info->end_sim)
 	{
+		pthread_mutex_unlock(&info->death_mutex);
 		pthread_mutex_lock(&info->print_mutex);
 		printf("%lu %d %s\n", get_timediff(info->time_start), philo->id, msg);
 		pthread_mutex_unlock(&info->print_mutex);
 	}
-	pthread_mutex_unlock(&info->eat_mutex);
+	else
+		pthread_mutex_unlock(&info->death_mutex);
 }

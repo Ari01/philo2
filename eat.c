@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:36:04 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/18 16:04:13 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:18:03 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ void	ft_sleep(t_info *info, unsigned long t)
 	start = get_time();
 	while (get_timediff(start) < t)
 	{
-		pthread_mutex_lock(&info->eat_mutex);
+		pthread_mutex_lock(&info->death_mutex);
 		if (info->end_sim)
 		{
-			pthread_mutex_unlock(&info->eat_mutex);
+			pthread_mutex_unlock(&info->death_mutex);
 			break ;
 		}
-		pthread_mutex_unlock(&info->eat_mutex);
+		pthread_mutex_unlock(&info->death_mutex);
+		usleep(1);
 	}
 }
 

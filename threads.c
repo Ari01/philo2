@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 07:00:52 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/18 15:59:13 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:09:19 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	*run_sim(void *arg)
 		usleep(10000);
 	while (1)
 	{
-		pthread_mutex_lock(&philo->info->eat_mutex);
+		pthread_mutex_lock(&philo->info->death_mutex);
 		if (philo->info->end_sim)
 		{
-			pthread_mutex_unlock(&philo->info->eat_mutex);
+			pthread_mutex_unlock(&philo->info->death_mutex);
 			break ;
 		}
-		pthread_mutex_unlock(&philo->info->eat_mutex);
+		pthread_mutex_unlock(&philo->info->death_mutex);
 		if (!eat(philo))
 			break ;
 	}

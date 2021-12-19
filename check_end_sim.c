@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:33:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/19 11:02:57 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:16:39 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	check_death(t_philo *philo, t_info *info)
 		{
 			pthread_mutex_unlock(&info->eat_mutex);
 			print_status(&philo[i], info, "died");
-			pthread_mutex_lock(&info->eat_mutex);
+			pthread_mutex_lock(&info->death_mutex);
 			info->end_sim = 1;
-			pthread_mutex_unlock(&info->eat_mutex);
+			pthread_mutex_unlock(&info->death_mutex);
 			return (1);
 		}
 		i++;
@@ -56,9 +56,9 @@ int	check_eat(t_philo *philo, t_info *info)
 	}
 	if (count >= info->n_philo)
 	{
-		pthread_mutex_lock(&info->eat_mutex);
+		pthread_mutex_lock(&info->death_mutex);
 		info->end_sim = 1;
-		pthread_mutex_unlock(&info->eat_mutex);
+		pthread_mutex_unlock(&info->death_mutex);
 		return (1);
 	}
 	return (0);

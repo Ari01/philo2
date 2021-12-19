@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 06:57:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/14 08:23:14 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:10:46 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	init_info(char **av, t_info *info)
 		return (0);
 	}
 	if (pthread_mutex_init(&info->eat_mutex, NULL)
-		|| pthread_mutex_init(&info->print_mutex, NULL))
+		|| pthread_mutex_init(&info->print_mutex, NULL)
+		|| pthread_mutex_init(&info->death_mutex, NULL))
 	{
 		printf("error: initializing mutex\n");
 		return (0);
