@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 07:00:52 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/20 10:42:51 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/20 14:42:11 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@ void	*run_sim(void *arg)
 	philo = (t_philo *)arg;
 	if (!(philo->id % 2))
 		usleep(philo->info->time_to_eat * 1000);
-	while (1)
+	while (!check_end_sim(philo, philo->info))
 	{
-		pthread_mutex_lock(&philo->info->death_mutex);
-		if (philo->info->end_sim)
+		if (philo->status == THINKING)
+			take_forks(philo);
+		else if (philo->status == FORK)
+			eat(philo);
+		else if (philo->status == EATING)
 		{
-			pthread_mutex_unlock(&philo->info->death_mutex);
-			break ;
+			print_status(philo, philo->info, "is sleeping");
+			ft_sleep(philo, philo->info->time_to_sleep);
 		}
-		pthread_mutex_unlock(&philo->info->death_mutex);
-		if (!eat(philo))
-			break ;
+		else
+			print_status(philo, philo->info, "is thinking");
+		philo->status = (philo->status + 1) % 4;
 	}
 	return (NULL);
 }

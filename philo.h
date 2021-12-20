@@ -6,19 +6,26 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 04:51:39 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/20 14:11:16 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/20 14:43:03 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/time.h>
-#include <pthread.h>
-#include <unistd.h>
-#include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <pthread.h>
+# include <unistd.h>
+# include <limits.h>
+
+/************* CONSTS ***************/
+
+# define THINKING	0
+# define FORK		1
+# define EATING		2
+# define SLEEPING	3
 
 /************* STRUCTS **************/
 
@@ -70,6 +77,8 @@ void			run_threads(t_info *info, t_philo *philo);
 int				check_end_sim(t_philo *philo, t_info *info);
 
 /*	EAT	*/
-int				eat(t_philo *philo);
+void			take_forks(t_philo *philo);
+void			eat(t_philo *philo);
+void			ft_sleep(t_philo *philo, unsigned long t);
 
 #endif
