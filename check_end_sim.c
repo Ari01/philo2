@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:33:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/19 11:27:47 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/20 11:09:25 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_eat(t_philo *philo, t_info *info)
 
 void	check_end_sim(t_philo *philo, t_info *info)
 {
-	usleep(100000);
+	usleep(10000);
 	while (1)
 	{
 		if (check_death(philo, info))

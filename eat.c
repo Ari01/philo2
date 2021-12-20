@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:36:04 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/19 12:24:32 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/20 11:52:12 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_sleep(t_info *info, unsigned long t)
 			break ;
 		}
 		pthread_mutex_unlock(&info->death_mutex);
-		usleep(1);
+		usleep(1000);
 	}
 }
 
