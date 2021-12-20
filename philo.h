@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 04:51:39 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/20 10:40:35 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/20 14:11:16 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_philo
 {
 	int				id;
 	int				n_eat;
+	int				status;
 	unsigned long	time_last_meal;
 	t_info			*info;
 	pthread_mutex_t	*lf;
