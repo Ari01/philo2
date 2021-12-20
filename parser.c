@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 06:57:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/19 11:10:46 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/19 13:37:29 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	check_info(char **av, t_info info)
 int	init_info(char **av, t_info *info)
 {
 	info->end_sim = 0;
+	info->all_ate = 0;
 	info->n_philo = ft_atoi(av[1]);
 	info->time_to_die = ft_atoi(av[2]);
 	info->time_to_eat = ft_atoi(av[3]);

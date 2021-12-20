@@ -6,26 +6,21 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:36:04 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/19 12:24:32 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/20 10:41:56 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_sleep(t_info *info, unsigned long t)
+void	ft_sleep(t_philo *philo, unsigned long t)
 {
 	unsigned long	start;
 
 	start = get_time();
 	while (get_timediff(start) < t)
 	{
-		pthread_mutex_lock(&info->death_mutex);
-		if (info->end_sim)
-		{
-			pthread_mutex_unlock(&info->death_mutex);
+		if (check_end_sim(philo, philo->info))
 			break ;
-		}
-		pthread_mutex_unlock(&info->death_mutex);
 		usleep(1);
 	}
 }
@@ -61,15 +56,24 @@ int	eat(t_philo *philo)
 {
 	if (take_forks(philo))
 	{
-		pthread_mutex_lock(&philo->info->eat_mutex);
 		philo->time_last_meal = get_time();
-		philo->n_eat++;
-		pthread_mutex_unlock(&philo->info->eat_mutex);
+		if (philo->n_eat >= 0)
+			philo->n_eat++;
+		else
+		{
+			pthread_mutex_lock(&philo->info->death_mutex);
+			if (philo->n_eat >= philo->info->n_eat)
+			{
+				philo->info->all_ate++;
+				philo->n_eat = -1;
+			}
+			pthread_mutex_unlock(&philo->info->death_mutex);
+		}
 		print_status(philo, philo->info, "is eating");
-		ft_sleep(philo->info, philo->info->time_to_eat);
+		ft_sleep(philo, philo->info->time_to_eat);
 		drop_forks(philo);
 		print_status(philo, philo->info, "is sleeping");
-		ft_sleep(philo->info, philo->info->time_to_sleep);
+		ft_sleep(philo, philo->info->time_to_sleep);
 		print_status(philo, philo->info, "is thinking");
 		return (1);
 	}

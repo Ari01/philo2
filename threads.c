@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 07:00:52 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/19 12:10:36 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/20 10:42:51 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	run_threads(t_info *info, t_philo *philo)
 		printf("error creating threads\n");
 	else
 	{
-		check_end_sim(philo, info);
 		i = 0;
 		while (i < info->n_philo)
 		{
