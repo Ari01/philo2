@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 07:00:52 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/20 14:42:11 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/22 16:21:20 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	*run_sim(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (!(philo->id % 2))
-		usleep(philo->info->time_to_eat * 1000);
 	while (!check_end_sim(philo, philo->info))
 	{
 		if (philo->status == THINKING)
