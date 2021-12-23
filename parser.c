@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 06:57:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/20 14:13:53 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/23 04:31:58 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	check_info(char **av, t_info info)
 
 int	init_info(char **av, t_info *info)
 {
+	info->room = 0;
 	info->end_sim = 0;
 	info->all_ate = 0;
 	info->n_philo = ft_atoi(av[1]);
@@ -41,7 +42,8 @@ int	init_info(char **av, t_info *info)
 	}
 	if (pthread_mutex_init(&info->eat_mutex, NULL)
 		|| pthread_mutex_init(&info->print_mutex, NULL)
-		|| pthread_mutex_init(&info->death_mutex, NULL))
+		|| pthread_mutex_init(&info->death_mutex, NULL)
+		|| pthread_mutex_init(&info->room_mutex, NULL))
 	{
 		printf("error: initializing mutex\n");
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 04:51:39 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/20 14:43:03 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/23 04:37:11 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
 /************* CONSTS ***************/
 
 # define THINKING	0
-# define FORK		1
-# define EATING		2
-# define SLEEPING	3
+# define EATING		1
+# define SLEEPING	2
 
 /************* STRUCTS **************/
 
@@ -38,6 +37,8 @@ typedef struct s_info
 	int				n_eat;
 	int				all_ate;
 	int				end_sim;
+	int				room;
+	pthread_mutex_t	room_mutex;
 	pthread_mutex_t	eat_mutex;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	death_mutex;
