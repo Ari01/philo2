@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 06:57:29 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/20 14:13:53 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/23 03:06:39 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int	init_info(char **av, t_info *info)
 	return (1);
 }
 
-pthread_mutex_t	*init_forks(int n_philo)
+t_fork	*init_forks(int n_philo)
 {
-	pthread_mutex_t	*forks;
-	int				i;
+	t_fork	*forks;
+	int		i;
 
 	forks = malloc(sizeof(*forks) * n_philo);
 	if (!forks)
@@ -60,7 +60,8 @@ pthread_mutex_t	*init_forks(int n_philo)
 	i = 0;
 	while (i < n_philo)
 	{
-		if (pthread_mutex_init(&forks[i], NULL))
+		forks[i].available = 1;
+		if (pthread_mutex_init(&forks[i].mutex, NULL))
 		{
 			free(forks);
 			return (NULL);
@@ -70,7 +71,7 @@ pthread_mutex_t	*init_forks(int n_philo)
 	return (forks);
 }
 
-t_philo	*init_philo(t_info *info, pthread_mutex_t *forks)
+t_philo	*init_philo(t_info *info, t_fork *forks)
 {
 	t_philo	*philo;
 	int		i;

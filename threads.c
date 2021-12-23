@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 07:00:52 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/22 16:21:20 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/23 03:59:32 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,24 @@ void	*run_sim(void *arg)
 	while (!check_end_sim(philo, philo->info))
 	{
 		if (philo->status == THINKING)
-			take_forks(philo);
+		{
+			philo->id % 2 ?
+				take_forks(philo, philo->lf, philo->rf) :
+				take_forks(philo, philo->rf, philo->lf);
+		}
 		else if (philo->status == FORK)
 			eat(philo);
 		else if (philo->status == EATING)
 		{
 			print_status(philo, philo->info, "is sleeping");
 			ft_sleep(philo, philo->info->time_to_sleep);
+			philo->status++;
 		}
 		else
+		{
 			print_status(philo, philo->info, "is thinking");
-		philo->status = (philo->status + 1) % 4;
+			philo->status = THINKING;
+		}
 	}
 	return (NULL);
 }

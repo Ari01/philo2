@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 04:48:14 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/14 07:37:54 by dchheang         ###   ########.fr       */
+/*   Updated: 2021/12/23 03:04:55 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	print_philo(t_philo *philo, int n_philo)
 
 int	main(int ac, char **av)
 {
-	t_info			info;
-	t_philo			*philo;
-	pthread_mutex_t	*forks;
+	t_info	info;
+	t_philo	*philo;
+	t_fork	*forks;
 
 	if (ac != 5 && ac != 6)
 		printf("error: number arguments\n");
