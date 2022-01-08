@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:36:04 by dchheang          #+#    #+#             */
-/*   Updated: 2021/12/23 05:28:42 by dchheang         ###   ########.fr       */
+/*   Updated: 2022/01/08 07:36:50 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_sleep(t_philo *philo, unsigned long t)
 	}
 }
 
-int		take_fork(t_philo *philo, pthread_mutex_t *mutex)
+int	take_fork(t_philo *philo, pthread_mutex_t *mutex)
 {
 	pthread_mutex_lock(mutex);
 	if (check_end_sim(philo, philo->info))
