@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 07:00:52 by dchheang          #+#    #+#             */
-/*   Updated: 2022/01/08 07:10:20 by dchheang         ###   ########.fr       */
+/*   Updated: 2022/01/24 13:39:56 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,19 @@ void	*run_sim(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->id % 2 == 0)
+		usleep(10000);
 	while (!check_end_sim(philo, philo->info))
 	{
-		if (philo->status == THINKING && check_room(philo->info))
+		if (check_room(philo->info))
 		{
 			take_forks(philo);
-			eat(philo);
-			philo->status++;
-		}
-		else if (philo->status == EATING)
-		{
-			print_status(philo, philo->info, "is sleeping");
-			ft_sleep(philo, philo->info->time_to_sleep);
-			philo->status++;
-		}
-		else if (philo->status == SLEEPING)
-		{
-			print_status(philo, philo->info, "is thinking");
-			philo->status = THINKING;
+			if (eat(philo))
+			{
+				print_status(philo, philo->info, "is sleeping");
+				ft_sleep(philo, philo->info->time_to_sleep);
+				print_status(philo, philo->info, "is thinking");
+			}
 		}
 	}
 	return (NULL);

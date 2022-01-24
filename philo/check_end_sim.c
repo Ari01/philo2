@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:33:29 by dchheang          #+#    #+#             */
-/*   Updated: 2022/01/08 06:48:03 by dchheang         ###   ########.fr       */
+/*   Updated: 2022/01/24 13:02:10 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,27 @@ int	check_death(t_philo *philo, t_info *info)
 	return (0);
 }
 
-int	check_eat(t_info *info)
+int	check_eat(t_philo *philo, t_info *info)
 {
 	int	ret;
 
 	ret = 0;
 	if (info->n_eat > 0)
 	{
-		pthread_mutex_lock(&info->death_mutex);
+		pthread_mutex_lock(&info->eat_mutex);
+		if (philo->n_eat >= info->n_eat)
+		{
+			info->all_ate++;
+			philo->n_eat = -1;
+		}
 		if (info->all_ate >= info->n_philo)
 		{
+			pthread_mutex_lock(&info->death_mutex);
 			info->end_sim = 1;
+			pthread_mutex_unlock(&info->death_mutex);
 			ret = 1;
 		}
-		pthread_mutex_unlock(&info->death_mutex);
+		pthread_mutex_unlock(&info->eat_mutex);
 	}
 	return (ret);
 }
@@ -52,5 +59,5 @@ int	check_end_sim(t_philo *philo, t_info *info)
 		return (1);
 	}
 	pthread_mutex_unlock(&info->death_mutex);
-	return (check_death(philo, info) || check_eat(info));
+	return (check_death(philo, info) || check_eat(philo, info));
 }

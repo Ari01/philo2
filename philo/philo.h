@@ -6,7 +6,7 @@
 /*   By: dchheang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 04:51:39 by dchheang          #+#    #+#             */
-/*   Updated: 2022/01/08 07:12:55 by dchheang         ###   ########.fr       */
+/*   Updated: 2022/01/24 13:39:17 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int				check_end_sim(t_philo *philo, t_info *info);
 
 /*	EAT	*/
 void			take_forks(t_philo *philo);
-void			eat(t_philo *philo);
+int				eat(t_philo *philo);
 void			ft_sleep(t_philo *philo, unsigned long t);
 
 #endif
